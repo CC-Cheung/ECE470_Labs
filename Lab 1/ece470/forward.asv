@@ -1,0 +1,12 @@
+
+function H = forward(joint,myrobot)
+    HList = []
+    for i in range(6):
+        d = myrobot.d(i)
+        a = myrobot.a(i)
+        t = joint(i)
+        H = [cos(t) -1* sin
+    H = myrobot.A(1:6,joint)
+end    
+
+
