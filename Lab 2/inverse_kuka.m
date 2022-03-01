@@ -1,29 +1,28 @@
 % 4.4
 function q = inverse_kuka(H,myrobot)
 %   coordinates of the wrist
-    cordsc = H(1:3,4)-H(1:3,1:3)*[-myrobot.a(6); 0; myrobot.d(6)] 
+    cordsc = H(1:3,4)-H(1:3,1:3)*[myrobot.a(6); 0; myrobot.d(6)] 
     
     xc = cordsc(1);
     yc = cordsc(2);
     zc = cordsc(3);
-    d1=myrobot.d(1);
-    d2=myrobot.d(2);
-    d4=myrobot.d(4);
+    d1=myrobot.d(1)
+    d4=myrobot.d(4)
     
-    a1=myrobot.a(1);
-    a2=myrobot.a(2);
-    a3=myrobot.a(3);
+    a1=myrobot.a(1)
+    a2=myrobot.a(2)
+    a3=myrobot.a(3)
     
     
     
 %   inverse kinematics from robot base to wrist
-    theta1= atan2(yc,xc)
+    theta1= atan2(yc,xc);
     
-    b=zc-d1;
-    f=(xc^2+yc^2)^0.5-a1;
-    c=(a3^2+d4^2)^0.5;
+    b=zc-d1
+    f=(xc^2+yc^2)^0.5-a1
+    c=(a3^2+d4^2)^0.5
     
-    D = (c^2-a2^2-b^2-f^2)/(2*a2*(b^2+f^2)^0.5);
+    D = (a2^2+b^2+f^2-c^2)/(2*a2*(b^2+f^2)^0.5)
     theta2= atan2((1-D^2)^0.5, D) + atan2(b,f)%y first
     
     E = (a2^2+c^2-f^2-b^2)/(2*a2*c)
@@ -34,7 +33,7 @@ function q = inverse_kuka(H,myrobot)
     joints = [theta1,theta2,theta3]
     
 %   get the rotation matrix of the wrist
-    H3 = transpose(forward(joints,myrobot))
+    H3 = transpose(forward_kuka(joints,myrobot))
     R = (H3*H)
     R = R(1:3,1:3)
     
