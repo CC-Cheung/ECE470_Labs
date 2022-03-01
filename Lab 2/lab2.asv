@@ -37,6 +37,6 @@ for i = 1:100
     cordinate_baseframe = FrameTransformation(cordinates);
     H=[R cordinate_baseframe; zeros(1,3) 1]
     q=inverse_kuka(H, myrobot)
-    setAngles(q,0.04)
+    setAngle(q,0.04)
     
 end
