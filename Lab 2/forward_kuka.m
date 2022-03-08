@@ -1,4 +1,4 @@
-% 4.3
+% Lab 1
 function H = forward_kuka(q,myrobot)
 %   Accumulator BigH accumulates all the Hs
     BigH = eye(4);

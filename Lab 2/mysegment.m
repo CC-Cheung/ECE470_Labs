@@ -1,4 +1,6 @@
 function X_workspace = mysegment()
+       %Here is the jug and circle. We also made a line see images and
+       %video
        Theta = linspace(0,2*pi,100);
        X = 600 + 100*sin(Theta)
        Y = 100*cos(Theta)

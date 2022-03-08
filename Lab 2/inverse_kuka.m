@@ -29,7 +29,7 @@ function q = inverse_kuka(H,myrobot)
     
 
     theta3=atan2((1-E^2)^0.5, E)-atan2(a3, d4)-pi/2;
-;    
+    
     joints = [theta1,theta2,theta3];
     
 %   get the rotation matrix of the wrist

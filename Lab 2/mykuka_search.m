@@ -1,6 +1,7 @@
 % 3.3
 function myrobot = mykuka_search(delta)
     %Just use constructor with the DH table. (theta, d, a, alpha)
+    %delta for a and d6
     DH =[0 400 25 pi/2 ;
      0 0 315 0 ;
      0 0 35 pi/2 ;
