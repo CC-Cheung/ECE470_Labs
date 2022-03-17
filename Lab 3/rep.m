@@ -34,7 +34,7 @@ function tau = rep(q,myrobot,obs)
         end
         %calculating the force
         F=[0;0;0];
-        for  j = length(obs)
+        for  j = 1:length(obs)
             obj=obs{j}
             F_temp=[0;0;0];
             C =[];
