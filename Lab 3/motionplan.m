@@ -5,7 +5,7 @@ function qref = motionplan(q0,q2,t1,t2,myrobot,obs,tol)
 
     while norm(q(end,1:5)-q2(1:5))>=tol
         
-        newq = q(end,:)+alpha*(att(q(end,:),q2,myrobot).'+rep(q,myrobot,obs));
+        newq = q(end,:)+alpha*(att(q(end,:),q2,myrobot).'+rep(q(end,:),myrobot,obs).');
         
         q = [q;newq];
         

@@ -17,7 +17,7 @@ dh =[0 76 0 pi/2 ;
      0 0 0 pi/2 ;
      0 43.18 0 -pi/2 ;
      0 0 0 pi/2 ;
-     0 20 0 0 ]
+     0 20 0 0 ];
 myrobot = mypuma560(dh);
 
 plot(myrobot,q);

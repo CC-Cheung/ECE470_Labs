@@ -34,8 +34,8 @@ function tau = rep(q,myrobot,obs)
         end
         %calculating the force
         F=[0;0;0];
-        for obj = obs
-            
+        for  j = length(obs)
+            obj=obs{j}
             F_temp=[0;0;0];
             C =[];
             if obj.type =='cyl'
@@ -57,17 +57,11 @@ function tau = rep(q,myrobot,obs)
            F = F +F_temp;
         end
         
-       
-        
         tau = tau +  J.' * F;
         
-        
-        
-        
-        
-        
     end
- 
-    tau = tau/norm(tau);
+    if norm(tau)~=0
+        tau = tau/norm(tau);
+    end
 
 end    

@@ -34,8 +34,8 @@ function tau = rep(q,myrobot,obs)
         end
         %calculating the force
         F=[0;0;0];
-        for obj = obs
-            
+        for  j = length(obs)
+            obj=obs{j}
             F_temp=[0;0;0];
             C =[];
             if obj.type =='cyl'
@@ -45,18 +45,16 @@ function tau = rep(q,myrobot,obs)
             end
             
             B =C+obj.R*(H1(1:3,4,i)-C)/norm(H1(1:3,4,i)-C);
-            B
-            (H1(1:3,4,i)
             dist = norm(H1(1:3,4,i)-B);
             if dist < obj.rho0
                 
-                F_temp = (1/dist - 1/obj.rho0)*(1/(dist^2)) * B/dist;
+                F_temp = (1/dist - 1/obj.rho0)*(1/(dist^2)) * (H1(1:3,4,i)-B)/dist;
                 
 
             end
             
             
-           F = F +F_temp
+           F = F +F_temp;
         end
         
        
