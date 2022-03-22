@@ -26,35 +26,20 @@ tau = att(q1,q2,myrobot)
 %     0.1034
 %    -0.0000 
 
-%3.2
 qref = motionplan(q1,q2,0,10,myrobot,[],0.01);
 t=linspace(0,10,300);
 q = ppval(qref,t)';
 plot(myrobot,q)
 
-%3.3
-setupobstacle
+% % setupobstacle
 q3 = 0.9*q1+0.1*q2;
-%We take a cell instead of the object so it's obs(1), not obs {1}
 tau = rep(q3,myrobot,obs(1)) % This tests the torque for the cylinder obstacle
-%tau=0.9950
-%     0.0291
-%    -0.0504
-%     0.0790
-%     0.0197
-%     0.0000
 
-%sphere
+ 
 q = [pi/2 pi 1.2*pi 0 0 0];
 tau = rep(q,myrobot,obs(6))
-% %tau=-0.1138
-%    -0.2140
-%    -0.9702
-%     0.0000
-%    -0.0037
-%     0.0000
 
-%Final
+% 
 setupobstacle
 hold on
 axis([-100 100 -100 100 0 200])
