@@ -15,9 +15,6 @@ function qref = motionplan(q0,q2,t1,t2,myrobot,obs,tol)
     t = linspace(t1,t2,size(q,1));
     qref = spline(t,q'); % defines a spline object with interpolation
     % times in t and interpolation values the columns of q
-
-        
-
-
+      
 
 end

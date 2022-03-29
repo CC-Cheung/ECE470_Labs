@@ -1,20 +1,40 @@
 %Setup
 %New DH Table
-dh =[0 400 25 pi/2 ;
+DH =[0 400 25 pi/2 ;
      0 0 315 0 ;
      0 0 35 pi/2 ;
      0 365 0 -pi/2 ;
      0 0 0 pi/2 ;
      0 161.44 -296.23 0 ];
-DHForces=dh;
-DHForces(6,3)=0;
-myrobot = mykuka(dh);
-myrobotForces=mykuka(DHForces);
+DH_forces=DH;
+DH_forces(6,3)=0;
+myrobot = mykuka(DH);
+myrobotForces=mykuka(DH_forces);
 setupobstacle_lab4prep
 % This is the final joint variable vector
 
 tau = rep([pi/10,pi/12,pi/6,pi/2,pi/2,-pi/6],myrobotForces,prepobs)
 
+
+kuka = mykuka(DH);
+kuka_forces = mykuka(DH_forces);
+p1 = [620 375 50];
+p2 = [620 -375 50];
+R=[0 0 1;0 -1 0;1 0 0];
+H1=[R p1';zeros(1,3) 1];
+H2=[R p2';zeros(1,3) 1];
+q1 = inverse_kuka(kuka, H1);
+q2 = inverse_kuka(kuka, H2);
+% motionplan(q1, q2, kuka_forces, obs);
+t1=0;
+t2=10;
+tol=0.01;
+
+qref = motionplan(q1,q2,t1,t2,kuka_forces,prepobs,tol);
+t=linspace(0,10,300);
+q = ppval(qref,t)';
+plotobstacle(prepobs);
+plot(kuka,q)
 % %tau = 
 %    -0.9050
 %    -0.0229

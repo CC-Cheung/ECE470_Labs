@@ -1,5 +1,5 @@
 % 4.4
-function q = inverse_kuka(H,myrobot)
+function q = inverse_kuka(myrobot,H)
 %   coordinates of the wrist
     cordsc = H(1:3,4)-H(1:3,1:3)*[myrobot.a(6); 0; myrobot.d(6)] ;
     

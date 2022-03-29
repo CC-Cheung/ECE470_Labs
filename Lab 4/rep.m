@@ -39,11 +39,19 @@ function tau = rep(q,myrobot,obs)
             if obj.type =='cyl'
 %               Same coordinates except z is the z of the object
                 C = [obj.c;H(3,4,i)];
-            else
+                B =C+obj.R*(H(1:3,4,i)-C)/norm(H(1:3,4,i)-C);
+
+                if H(3,4,i)>obj.h                    
+                    B(3)=obj.h;
+                end
+
+            elseif obj.type =='sph'
                 C = obj.c;
+                B =C+obj.R*(H(1:3,4,i)-C)/norm(H(1:3,4,i)-C);
+            elseif obj.type =='pla'
+                B = [H(1:2,4,i), obj.h];%h is how high it is
             end
             
-            B =C+obj.R*(H(1:3,4,i)-C)/norm(H(1:3,4,i)-C);
             dist = norm(H(1:3,4,i)-B);
             %If within range
             if dist < obj.rho0                
